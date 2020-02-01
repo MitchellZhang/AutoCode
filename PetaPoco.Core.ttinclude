@@ -1,7 +1,7 @@
 <#@ template language="C#" hostspecific="True" #>
 <#@ output extension=".cs" #>
 <#@ assembly name="EnvDTE" #>
-<#@ assembly name="System.Core.dll" #>
+
 <#@ assembly name="System.Data" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Configuration" #>

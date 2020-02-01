@@ -26,7 +26,7 @@ namespace <#=Namespace #>
 <#manager.EndBlock();#>
 
 <# 
-   manager.StartBlock($"I{tbl.ClassName}Repository.cs");
+   manager.StartBlock("I"+tbl.ClassName+"Repository.cs");
 #>
 using System;
 using <#=Namespace #>;
