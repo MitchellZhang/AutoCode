@@ -1,0 +1,37 @@
+<#@ include file="PetaPoco.Core.ttinclude" #>
+<#
+	// Settings
+    ConnectionStringName = "mssql";			// Uses last connection string in config if not specified
+    Namespace = "ZYL.Core.Model";
+    RepoName = "";
+    GenerateOperations = true;
+	GeneratePocos = true;
+	GenerateCommon = true;
+	ClassPrefix = "";
+	ClassSuffix = "";
+	TrackModifiedColumns = false;
+	ExplicitColumns = true;
+	ExcludePrefix = new string[] {}; // Exclude tables by prefix.
+	IncludePrefix = new string[] { "Shop_Product","Product_List","Shop_Main","Shop_P_Main" };// Include tables by Prefix
+	ServiceName = "ZYL.Core.Service.Data";
+
+    // Read schema
+	var tables = LoadTables();
+
+
+/*
+	// Tweak Schema
+	tables["tablename"].Ignore = true;							// To ignore a table
+	tables["tablename"].ClassName = "newname";					// To change the class name of a table
+	tables["tablename"]["columnname"].Ignore = true;			// To ignore a column
+	tables["tablename"]["columnname"].PropertyName="newname";	// To change the property name of a column
+	tables["tablename"]["columnname"].PropertyType="bool";		// To change the property type of a column
+*/
+
+	// Generate output
+	if (tables.Count>0)
+	{
+#>
+<#@ include file="Model.ttinclude" #>
+
+<# } #>

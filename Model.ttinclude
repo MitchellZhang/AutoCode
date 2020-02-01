@@ -1,0 +1,62 @@
+<#@ include file="Manager.ttinclude" #>
+<# var manager=new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile) +  @"\Model\"};
+    foreach(Table tbl in from t in tables where !t.Ignore select t)
+{ 
+manager.StartBlock(tbl.ClassName+".cs");
+
+#>
+using System;
+using PetaPoco;
+namespace <#=Namespace #>
+{
+   [TableName("<#=tbl.Name#>")]
+   [PrimaryKey("<#=tbl.PK.Name#>", AutoIncrement=false)]
+   public partial class <#=tbl.ClassName#>
+   {
+   <#
+   foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+   {
+   #>
+   public <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
+   <# 
+   }
+   #>
+   }
+}
+<#manager.EndBlock();#>
+
+<# 
+   manager.StartBlock($"I{tbl.ClassName}Repository.cs");
+#>
+using System;
+using <#=Namespace #>;
+using XmSoft.NetCore.DBContext;
+namespace <#=ServiceName #>
+{
+   public interface  I<#=tbl.ClassName#>Repository :IDefaultRepository<<#=tbl.ClassName#>>
+   {
+      
+   }
+}
+<#manager.EndBlock();#>
+
+<# 
+	manager.StartBlock(tbl.ClassName+"Repository.cs");
+#>
+using System;
+using <#=Namespace #>;
+using XmSoft.NetCore.DBContext;
+namespace <#=ServiceName #>
+{
+   public partial class <#=tbl.ClassName#>Repository :DefaultRepository<<#=tbl.ClassName#>>,I<#=tbl.ClassName#>Repository
+   {
+      public <#=tbl.ClassName#>Repository(DbContext Context) : base(Context)
+     {
+
+     }
+   }
+}
+<#manager.EndBlock();#>
+
+<# } #>
+<#manager.Process(true); #>
