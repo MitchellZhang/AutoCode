@@ -12,7 +12,7 @@
 	//TrackModifiedColumns = false;
 	//ExplicitColumns = true;
 	ExcludePrefix = new string[] {}; // Exclude tables by prefix.
-	IncludePrefix = new string[] { "THOA_Company_Age" };// Include tables by Prefix
+	IncludePrefix = new string[] { "Product_List" };// Include tables by Prefix
 	ServiceName = "ZYL.Core.Service.Data";
 
     // Read schema

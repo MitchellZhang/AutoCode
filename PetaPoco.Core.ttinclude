@@ -117,7 +117,7 @@ public class Table
     {
         get
         {
-            return this.Columns.SingleOrDefault(x=>x.IsPK);
+            return this.Columns.FirstOrDefault(x=>x.IsPK);
         }
     }
 
@@ -593,7 +593,7 @@ class SqlServerSchemaReader : SchemaReader
 		            
 			// Mark the primary key
 			string PrimaryKey=GetPK(tbl.Name);
-			var pkColumn=tbl.Columns.SingleOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
+			var pkColumn=tbl.Columns.FirstOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
 			if(pkColumn!=null)
 			{
 				pkColumn.IsPK=true;
@@ -799,7 +799,7 @@ class SqlServerCeSchemaReader : SchemaReader
 		            
 			// Mark the primary key
 			string PrimaryKey=GetPK(tbl.Name);
-			var pkColumn=tbl.Columns.SingleOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
+			var pkColumn=tbl.Columns.FirstOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
 			if(pkColumn!=null)
 				pkColumn.IsPK=true;
 		}
@@ -985,7 +985,7 @@ class PostGreSqlSchemaReader : SchemaReader
 		            
 			// Mark the primary key
 			string PrimaryKey=GetPK(tbl.Name);
-			var pkColumn=tbl.Columns.SingleOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
+			var pkColumn=tbl.Columns.FirstOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
 			if(pkColumn!=null)
 				pkColumn.IsPK=true;
 		}
@@ -1293,7 +1293,7 @@ class OracleSchemaReader : SchemaReader
 		            
 			// Mark the primary key
 			string PrimaryKey=GetPK(tbl.Name);
-			var pkColumn=tbl.Columns.SingleOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
+			var pkColumn=tbl.Columns.FirstOrDefault(x=>x.Name.ToLower().Trim()==PrimaryKey.ToLower().Trim());
 			if(pkColumn!=null)
 				pkColumn.IsPK=true;
 		}

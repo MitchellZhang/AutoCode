@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="6.10.9" />
     <PackageReference Include="PetaPoco.Compiled" Version="6.0.441" />
     <PackageReference Include="XmSoft.NetCore.DBContext" Version="1.0.0" />
   </ItemGroup>
