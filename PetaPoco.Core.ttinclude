@@ -87,16 +87,16 @@
 
 string ConnectionStringName = "";
 string Namespace = "";
-string RepoName = "";
+//string RepoName = "";
 string ClassPrefix = "";
 string ClassSuffix = "";
 string SchemaName = null;
 bool IncludeViews = false;
-bool GenerateOperations = false;
-bool GenerateCommon = true;
-bool GeneratePocos = true;
-bool ExplicitColumns = true;
-bool TrackModifiedColumns = false;
+//bool GenerateOperations = false;
+//bool GenerateCommon = true;
+//bool GeneratePocos = true;
+//bool ExplicitColumns = true;
+//bool TrackModifiedColumns = false;
 string[] ExcludePrefix = new string[] {};
 string[] IncludePrefix = new string[] {};
 string ServiceName = "";

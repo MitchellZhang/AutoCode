@@ -3,16 +3,16 @@
 	// Settings
     ConnectionStringName = "mssql";			// Uses last connection string in config if not specified
     Namespace = "ZYL.Core.Model";
-    RepoName = "";
-    GenerateOperations = true;
-	GeneratePocos = true;
-	GenerateCommon = true;
+    //RepoName = "";
+    //GenerateOperations = true;
+	//GeneratePocos = true;
+	//GenerateCommon = true;
 	ClassPrefix = "";
 	ClassSuffix = "";
-	TrackModifiedColumns = false;
-	ExplicitColumns = true;
+	//TrackModifiedColumns = false;
+	//ExplicitColumns = true;
 	ExcludePrefix = new string[] {}; // Exclude tables by prefix.
-	IncludePrefix = new string[] { "Shop_Product","Product_List","Shop_Main","Sales_Order_List" };// Include tables by Prefix
+	IncludePrefix = new string[] { "THOA_Company_Age" };// Include tables by Prefix
 	ServiceName = "ZYL.Core.Service.Data";
 
     // Read schema
