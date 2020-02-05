@@ -17,7 +17,10 @@ namespace <#=Namespace #>
    foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
    {
    #>
-   public <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
+   /// <summary>
+      /// <#=col.Remark.Replace("\r\n"," ")#>
+      /// </summary>
+      public <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
    <# 
    }
    #>
@@ -31,7 +34,7 @@ namespace <#=Namespace #>
 using System;
 using <#=Namespace #>;
 using XmSoft.NetCore.DBContext;
-namespace <#=ServiceName #>
+namespace <#=RepositoryName #>
 {
    public interface  I<#=tbl.ClassName#>Repository :IDefaultRepository<<#=tbl.ClassName#>>
    {
@@ -46,7 +49,7 @@ namespace <#=ServiceName #>
 using System;
 using <#=Namespace #>;
 using XmSoft.NetCore.DBContext;
-namespace <#=ServiceName #>
+namespace <#=RepositoryName #>
 {
    public partial class <#=tbl.ClassName#>Repository :DefaultRepository<<#=tbl.ClassName#>>,I<#=tbl.ClassName#>Repository
    {
