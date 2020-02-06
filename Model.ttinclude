@@ -7,8 +7,10 @@ manager.StartBlock(tbl.ClassName+".cs");
 #>
 using System;
 using PetaPoco;
+
 namespace <#=Namespace #>
 {
+   [Serializable]
    [TableName("<#=tbl.Name#>")]
    [PrimaryKey("<#=tbl.PK.Name#>", AutoIncrement=false)]
    public partial class <#=tbl.ClassName#>

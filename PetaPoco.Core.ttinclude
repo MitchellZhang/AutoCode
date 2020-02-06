@@ -468,34 +468,34 @@ Tables LoadTables()
 			}
 
 			reader.outer=this;
-			result=reader.ReadSchema(conn, _factory);
+			result=reader.ReadSchema(conn, _factory,IncludePrefix);
 
 			// Remove unrequired tables/views
-			for (int i=result.Count-1; i>=0; i--)
-			{
-				if (SchemaName!=null && string.Compare(result[i].Schema, SchemaName, true)!=0)
-				{
-					result.RemoveAt(i);
-					continue;
-				}
-				if (!IncludeViews && result[i].IsView)
-				{
-					result.RemoveAt(i);
-					continue;
-				}
-				//if(StartsWithAny(result[i].ClassName, ExcludePrefix)) {
+			//for (int i=result.Count-1; i>=0; i--)
+			//{
+				//if (SchemaName!=null && string.Compare(result[i].Schema, SchemaName, true)!=0)
+				//{
 					//result.RemoveAt(i);
 					//continue;
 				//}
-				if(StartsWithIn(result[i].ClassName,IncludePrefix)) {
+				//if (!IncludeViews && result[i].IsView)
+				//{
+					//result.RemoveAt(i);
+					//continue;
+				//}
+				////if(StartsWithAny(result[i].ClassName, ExcludePrefix)) {
+					////result.RemoveAt(i);
+					////continue;
+				////}
+				//if(StartsWithIn(result[i].ClassName,IncludePrefix)) {
 					
-					continue;
-				}
-				else
-				{
-				   result.RemoveAt(i);
-				}
-			}
+					//continue;
+				//}
+				//else
+				//{
+				   //result.RemoveAt(i);
+				//}
+			//}
 
 			conn.Close();
 
@@ -549,7 +549,7 @@ bool StartsWithIn(string s, IEnumerable<string> items)
 
 abstract class SchemaReader
 {
-	public abstract Tables ReadSchema(DbConnection connection, DbProviderFactory factory);
+	public abstract Tables ReadSchema(DbConnection connection, DbProviderFactory factory,string[] IncludePrefix = null );
 	public GeneratedTextTransformation outer;
 	public void WriteLine(string o)
 	{
@@ -561,7 +561,7 @@ abstract class SchemaReader
 class SqlServerSchemaReader : SchemaReader
 {
 	// SchemaReader.ReadSchema
-	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory)
+	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory,string[] IncludePrefix)
 	{
 		var result=new Tables();
 		
@@ -586,8 +586,8 @@ class SqlServerSchemaReader : SchemaReader
 					tbl.IsView=string.Compare(rdr["TABLE_TYPE"].ToString(), "View", true)==0;
 					tbl.CleanName=CleanUp(tbl.Name);
 					tbl.ClassName=Inflector.MakeSingular(tbl.CleanName);
-
-					result.Add(tbl);
+                    if(IncludePrefix.Contains(tbl.Name)) //过滤
+					   result.Add(tbl);
 				}
 			}
 		}
@@ -774,7 +774,7 @@ class SqlServerSchemaReader : SchemaReader
 class SqlServerCeSchemaReader : SchemaReader
 {
 	// SchemaReader.ReadSchema
-	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory)
+	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory,string[] IncludePrefix)
 	{
 		var result=new Tables();
 		
@@ -965,7 +965,7 @@ class SqlServerCeSchemaReader : SchemaReader
 class PostGreSqlSchemaReader : SchemaReader
 {
 	// SchemaReader.ReadSchema
-	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory)
+	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory,string[] IncludePrefix)
 	{
 		var result=new Tables();
 		
@@ -1146,7 +1146,7 @@ class PostGreSqlSchemaReader : SchemaReader
 class MySqlSchemaReader : SchemaReader
 {
 	// SchemaReader.ReadSchema
-	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory)
+	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory,string[] IncludePrefix)
 	{
 		var result=new Tables();
 	
@@ -1168,6 +1168,7 @@ class MySqlSchemaReader : SchemaReader
 					tbl.IsView=string.Compare(rdr["TABLE_TYPE"].ToString(), "View", true)==0;
 					tbl.CleanName=CleanUp(tbl.Name);
 					tbl.ClassName=Inflector.MakeSingular(tbl.CleanName);
+					if(IncludePrefix.Contains(tbl.Name)) //过滤
 					result.Add(tbl);
 				}
 			}
@@ -1270,7 +1271,7 @@ class MySqlSchemaReader : SchemaReader
 class OracleSchemaReader : SchemaReader
 {
 	// SchemaReader.ReadSchema
-	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory)
+	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory,string[] IncludePrefix)
 	{
 		var result=new Tables();
 		
