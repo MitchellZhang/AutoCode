@@ -1,21 +1,24 @@
 <#@ include file="PetaPoco.Core.ttinclude" #>
 <#
-	// Settings
-    ConnectionStringName = "mssql";			// Uses last connection string in config if not specified
-    Namespace = "ZYL.Core.Model";
-    //RepoName = "";
+	// 设置
+    ConnectionStringName = "mssql";			// 数据库类型 根据app.config 配置的connectionStrings name
+    Namespace = "ZYL.Core.Model";  // 命名空间
+	IncludePrefix = new string[] { "Product_List","Shop_Product","Sales_Order_List" };// 需生成实体类的数据表数组，平时修改此处生成对应的实体类
+	RepositoryName = "ZYL.Core.Repository"; //仓储命名空间
+
+
+
+    ExcludePrefix = new string[] {}; // 排除的表，暂时无效
+	ClassPrefix = "";
+	ClassSuffix = "";
+	//RepoName = "";
     //GenerateOperations = true;
 	//GeneratePocos = true;
 	//GenerateCommon = true;
-	ClassPrefix = "";
-	ClassSuffix = "";
 	//TrackModifiedColumns = false;
 	//ExplicitColumns = true;
-	ExcludePrefix = new string[] {}; // Exclude tables by prefix.
-	IncludePrefix = new string[] { "Product_List","Shop_Product","Sales_Order_List" };// Include tables by Prefix
-	RepositoryName = "ZYL.Core.Repository";
 
-    // Read schema
+    // 加载表
 	var tables = LoadTables();
 
 
