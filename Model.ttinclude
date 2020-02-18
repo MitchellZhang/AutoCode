@@ -19,7 +19,7 @@ namespace <#=Namespace #>
    foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
    {
    #>
-   /// <summary>
+      /// <summary>
       /// <#=col.Remark.Replace("\r\n"," ")#>
       /// </summary>
       public <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
@@ -59,6 +59,71 @@ namespace <#=RepositoryName #>
      {
 
      }
+   }
+}
+<#manager.EndBlock();#>
+
+
+<# 
+	manager.StartBlock("I"+tbl.ClassName+"Service.cs");
+#>
+using System;
+using <#=Namespace #>;
+
+namespace <#=ServiceName #>
+{
+   public interface I<#=tbl.ClassName#>Service
+   {
+      
+      object Create(<#=tbl.ClassName#> model);
+     
+      bool Update(<#=tbl.ClassName#> model);
+
+      bool Delete(object Id);
+
+   }
+}
+<#manager.EndBlock();#>
+
+
+<# 
+	manager.StartBlock(tbl.ClassName+"Service.cs");
+#>
+using System;
+using <#=Namespace #>;
+using <#=RepositoryName #>;
+
+namespace <#=ServiceName #>
+{
+   public class <#=tbl.ClassName#>Service :I<#=tbl.ClassName#>Service
+   {
+      private I<#=tbl.ClassName#>Repository repository;
+      public <#=tbl.ClassName#>Service(I<#=tbl.ClassName#>Repository _repository)
+      {
+         repository = _repository;
+      }  
+      /// <summary>
+      /// 新增
+      /// </summary>
+      public object Create(<#=tbl.ClassName#> model)
+      {
+         return repository.Create(model); 
+      }
+      /// <summary>
+      /// 修改
+      /// </summary>
+      public bool Update(<#=tbl.ClassName#> model)
+      {
+          return repository.Update(model);
+      }
+      /// <summary>
+      /// 删除
+      /// </summary>
+      public bool Delete(object Id)
+      {
+          return repository.DeleteById(Id);
+      }
+
    }
 }
 <#manager.EndBlock();#>

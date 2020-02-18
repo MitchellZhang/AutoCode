@@ -100,6 +100,7 @@ bool IncludeViews = false;
 string[] ExcludePrefix = new string[] {};
 string[] IncludePrefix = new string[] {};
 string RepositoryName = "";
+string ServiceName = "";
 
 
 public class Table
