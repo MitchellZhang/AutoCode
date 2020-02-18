@@ -102,27 +102,19 @@ namespace <#=ServiceName #>
       {
          repository = _repository;
       }  
+
       /// <summary>
       /// 新增
       /// </summary>
-      public object Create(<#=tbl.ClassName#> model)
-      {
-         return repository.Create(model); 
-      }
+      public object Create(<#=tbl.ClassName#> model) => repository.Create(model); 
       /// <summary>
       /// 修改
       /// </summary>
-      public bool Update(<#=tbl.ClassName#> model)
-      {
-          return repository.Update(model);
-      }
+      public bool Update(<#=tbl.ClassName#> model) => repository.Update(model);
       /// <summary>
       /// 删除
       /// </summary>
-      public bool Delete(object Id)
-      {
-          return repository.DeleteById(Id);
-      }
+      public bool Delete(object Id) => repository.DeleteById(Id);
 
    }
 }

@@ -26,9 +26,25 @@
 // 
 //     Connection String Name: `mssql`
 //     Provider:               `System.Data.SqlClient`
-//     Connection String:      `Data Source=.;Initial Catalog=THOA_Mall;User ID=sa;Password=taihao123Aa`
+//     Connection String:      `Data Source=192.168.2.251;Initial Catalog=THOA_Mall;User ID=sa;Password=taihao123Aa`
 //     Schema:                 ``
 //     Include Views:          `False`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
