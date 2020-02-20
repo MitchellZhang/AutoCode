@@ -101,6 +101,7 @@ string[] ExcludePrefix = new string[] {};
 string[] IncludePrefix = new string[] {};
 string RepositoryName = "";
 string ServiceName = "";
+string InterfaceName = "";
 
 
 public class Table

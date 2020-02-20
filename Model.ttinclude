@@ -36,7 +36,8 @@ namespace <#=Namespace #>
 using System;
 using <#=Namespace #>;
 using XmSoft.NetCore.DBContext;
-namespace <#=RepositoryName #>
+
+namespace <#=InterfaceName #>.Repository
 {
    public interface  I<#=tbl.ClassName#>Repository :IDefaultRepository<<#=tbl.ClassName#>>
    {
@@ -51,6 +52,8 @@ namespace <#=RepositoryName #>
 using System;
 using <#=Namespace #>;
 using XmSoft.NetCore.DBContext;
+using <#=InterfaceName #>.Repository;
+
 namespace <#=RepositoryName #>
 {
    public partial class <#=tbl.ClassName#>Repository :DefaultRepository<<#=tbl.ClassName#>>,I<#=tbl.ClassName#>Repository
@@ -70,7 +73,7 @@ namespace <#=RepositoryName #>
 using System;
 using <#=Namespace #>;
 
-namespace <#=ServiceName #>
+namespace <#=InterfaceName #>.Service
 {
    public interface I<#=tbl.ClassName#>Service
    {
@@ -92,6 +95,8 @@ namespace <#=ServiceName #>
 using System;
 using <#=Namespace #>;
 using <#=RepositoryName #>;
+using <#=InterfaceName #>.Service;
+using <#=InterfaceName #>.Repository;
 
 namespace <#=ServiceName #>
 {

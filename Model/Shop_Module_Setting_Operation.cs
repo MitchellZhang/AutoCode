@@ -5,9 +5,9 @@ using PetaPoco;
 namespace ZYL.Core.Model
 {
    [Serializable]
-   [TableName("Shop_Fmcg_Store_RepositoryRelation")]
+   [TableName("Shop_Module_Setting_Operation")]
    [PrimaryKey("Id", AutoIncrement=false)]
-   public partial class Shop_Fmcg_Store_RepositoryRelation
+   public partial class Shop_Module_Setting_Operation
    {
    
       /// <summary>
@@ -16,14 +16,14 @@ namespace ZYL.Core.Model
       public Guid Id { get; set; }
    
       /// <summary>
-      /// 门店ID（SHOP_FMCG_PURCHASERSTORE ID)
+      /// 模块ID
       /// </summary>
-      public Guid? StoreId { get; set; }
+      public Guid? ModuleId { get; set; }
    
       /// <summary>
-      /// 该门店下独立的店铺ID（仓库店铺ID)
+      /// 操作类型
       /// </summary>
-      public Guid? SubShopId { get; set; }
+      public Guid? OperaType { get; set; }
    
       /// <summary>
       /// 创建时间

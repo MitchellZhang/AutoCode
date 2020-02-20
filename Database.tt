@@ -3,9 +3,10 @@
 	// 设置
     ConnectionStringName = "mssql";			// 数据库类型 根据app.config 配置的connectionStrings name
     Namespace = "ZYL.Core.Model";  // 命名空间
-	IncludePrefix = new string[] { "Product_List","Shop_Fmcg_Store_RepositoryRelation" };// 需生成实体类的数据表数组，平时修改此处生成对应的实体类
+	IncludePrefix = new string[] { "Shop_Module_Setting","Shop_Module_Setting_Operation","Shop_Module_Operation" };// 需生成实体类的数据表数组，平时修改此处生成对应的实体类
 	RepositoryName = "ZYL.Core.Repository"; //仓储命名空间
 	ServiceName = "ZYL.Core.Service";
+	InterfaceName ="ZYL.Core.Interface";
 
 
 
